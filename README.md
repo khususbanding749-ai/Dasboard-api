@@ -57,26 +57,16 @@
 
   /* ============= HEADER ============= */
   header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding: 20px 24px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 20px;
-    backdrop-filter: var(--glass-blur);
-    box-shadow: var(--shadow-lg);
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; padding: 20px 24px;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 20px; backdrop-filter: var(--glass-blur); box-shadow: var(--shadow-lg);
   }
   .brand { display: flex; align-items: center; gap: 14px; }
   .brand-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
+    width: 48px; height: 48px; border-radius: 14px;
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
+    display: flex; align-items: center; justify-content: center; color: #fff;
     box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
   }
   .brand-icon svg { width: 26px; height: 26px; }
@@ -125,7 +115,7 @@
     padding: 11px 18px; border-radius: 12px;
     border: 1px solid var(--card-border); background: rgba(255,255,255,0.05);
     color: var(--text); font-family: inherit; font-weight: 600; font-size: 0.85rem;
-    cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     transition: all 0.2s; white-space: nowrap;
   }
   .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
@@ -230,7 +220,7 @@
 
   .card-desc { font-size: 0.82rem; color: #cbd5e1; line-height: 1.55; word-break: break-word; }
   .card-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 4px; }
-  .card-actions .btn { flex: 1; justify-content: center; padding: 9px 12px; font-size: 0.78rem; }
+  .card-actions .btn { flex: 1; padding: 9px 12px; font-size: 0.78rem; }
 
   /* ============= EMPTY ============= */
   .empty {
@@ -247,15 +237,17 @@
   .modal-overlay {
     display: none; position: fixed; inset: 0;
     background: rgba(5, 5, 15, 0.75); backdrop-filter: blur(8px);
-    z-index: 999; justify-content: center; align-items: center; padding: 20px;
+    z-index: 999; justify-content: center; align-items: center; 
+    padding: 16px;
   }
   .modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   
   .modal {
-    background: rgba(20, 18, 40, 0.95); border: 1px solid var(--card-border);
-    border-radius: 20px; max-width: 520px; width: 100%; max-height: 90vh;
-    display: flex; flex-direction: column; /* Flexbox untuk sticky footer */
+    background: rgba(20, 18, 40, 0.98); border: 1px solid var(--card-border);
+    border-radius: 20px; max-width: 520px; width: 100%; 
+    max-height: 90dvh; /* Fix layar HP */
+    display: flex; flex-direction: column; 
     box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
     animation: pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
     backdrop-filter: var(--glass-blur); overflow: hidden;
@@ -271,7 +263,7 @@
   .modal-head-icon svg { width: 20px; height: 20px; }
   .modal h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
 
-  .modal-body { padding: 20px 28px; overflow-y: auto; flex: 1; }
+  .modal-body { padding: 10px 28px 20px 28px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
   .modal-body::-webkit-scrollbar { width: 6px; }
   .modal-body::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
@@ -288,10 +280,13 @@
   }
   .form-group select option { background: #1a1830; }
 
+  /* Footer - Sticky di bawah */
   .modal-actions {
     display: flex; gap: 10px; justify-content: flex-end;
-    padding: 20px 28px; background: rgba(20, 18, 40, 0.98);
+    padding: 16px 28px; background: #141228;
     border-top: 1px solid var(--card-border); border-radius: 0 0 20px 20px; flex-shrink: 0;
+    position: sticky; bottom: 0; z-index: 10;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
 
   /* ============= TOAST ============= */
@@ -318,7 +313,6 @@
   ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
   ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-2)); border-radius: 4px; }
 
-  /* Loading spinner */
   .spinner-sm { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -327,15 +321,17 @@
     body { padding: 16px 12px; }
     header { padding: 16px; flex-direction: column; align-items: flex-start; }
     .header-actions { width: 100%; }
-    .header-actions .btn { flex: 1; justify-content: center; }
+    .header-actions .btn { flex: 1; }
     .grid { grid-template-columns: 1fr; }
     .stat-card { padding: 16px; }
     .toast { left: 12px; right: 12px; bottom: 12px; max-width: none; }
     .server-bar { padding: 12px; }
-    .modal { max-height: 95vh; }
+    
+    .modal-overlay { padding: 10px; align-items: flex-end; }
+    .modal { max-height: 92dvh; } 
     .modal-head { padding: 20px 20px 10px 20px; }
-    .modal-body { padding: 16px 20px; }
-    .modal-actions { padding: 16px 20px; }
+    .modal-body { padding: 10px 20px 20px 20px; }
+    .modal-actions { padding: 14px 20px; }
   }
 </style>
 </head>
@@ -356,9 +352,16 @@
       </div>
     </div>
     <div class="header-actions">
+      <!-- TOMBOL UPLOAD ENDPOINT (BARU) -->
+      <button class="btn" id="btnUpload" style="color: var(--accent-3); border-color: rgba(6,182,212,0.3);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Upload JSON
+      </button>
+      <input type="file" id="fileUpload" accept=".json" style="display: none;">
+
       <button class="btn" id="btnImport">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Import
+        Paste JSON
       </button>
       <button class="btn" id="btnExport">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -379,11 +382,12 @@
     </div>
     <div class="server-input-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      <input class="server-input" id="serverUrl" placeholder="http://localhost:3000 (URL server API-mu)">
+      <!-- Placeholder diubah agar jelas support HTTP/HTTPS -->
+      <input class="server-input" id="serverUrl" placeholder="localhost:3000 atau https://api.domain.com">
     </div>
     <button class="btn sync" id="btnSaveServer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-      Simpan URL
+      Simpan
     </button>
     <button class="btn" id="btnTestServer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -512,7 +516,7 @@
       <div class="modal-head-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       </div>
-      <h2>Import JSON</h2>
+      <h2>Paste JSON</h2>
     </div>
     <div class="modal-body">
       <div class="form-group">
@@ -585,8 +589,18 @@ function loadServerUrl() {
   serverUrl = localStorage.getItem(SERVER_KEY) || "";
   $("serverUrl").value = serverUrl;
 }
+
+// FITUR BARU: Auto-prefix http:// jika user tidak mengetik http/https
 function saveServerUrl(url) {
-  serverUrl = url.trim().replace(/\/+$/, "");
+  let cleanUrl = url.trim().replace(/\/+$/, ""); // Hapus trailing slash
+  if (!cleanUrl) return;
+  
+  // Jika tidak ada http:// atau https://, tambahkan http://
+  if (!/^https?:\/\//i.test(cleanUrl)) {
+    cleanUrl = "http://" + cleanUrl;
+  }
+  
+  serverUrl = cleanUrl;
   localStorage.setItem(SERVER_KEY, serverUrl);
   $("serverUrl").value = serverUrl;
 }
@@ -686,7 +700,7 @@ function render() {
     grid.innerHTML = `<div class="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       <h3>Belum ada API</h3>
-      <p>Klik tombol di bawah untuk menambahkan endpoint pertamamu</p>
+      <p>Klik tombol di bawah untuk menambahkan endpoint pertamamu, atau Upload JSON.</p>
       <button class="btn primary" onclick="openAdd()">${ICONS.check} Tambah API</button>
     </div>`;
     return;
@@ -882,7 +896,7 @@ async function saveItem() {
 }
 
 /* =========================================
-   SYNC — PUSH / PULL
+   SYNC — PUSH / PULL / UPLOAD JSON
    ========================================= */
 async function pushAllToServer() {
   if (!serverUrl) return toast("URL server belum diset", "error");
@@ -946,8 +960,71 @@ async function pullFromServer() {
   }
 }
 
+// FITUR BARU: Upload file JSON & Push langsung ke Server
+$("btnUpload").onclick = () => $("fileUpload").click();
+$("fileUpload").onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async (ev) => {
+    try {
+      const parsed = JSON.parse(ev.target.result);
+      if (!Array.isArray(parsed)) throw new Error("File JSON harus berisi Array [...]");
+
+      // Konfirmasi
+      const doSync = serverUrl && confirm(`Ditemukan ${parsed.length} API di file.\n\nApakah mau langsung dikirim ke SERVER juga?`);
+      if (!doSync && !confirm(`Tambahkan ${parsed.length} API ke dashboard lokal?`)) return;
+
+      // Mapping data
+      const newItems = parsed.map(d => ({
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        serverId: null,
+        name: d.name || d.title || "Untitled",
+        endpoint: d.endpoint || d.url || "",
+        key: d.key || d.apikey || "",
+        category: d.category || "Other",
+        method: d.method || "GET",
+        desc: d.desc || d.description || "",
+        status: d.status || "active",
+      }));
+
+      // Simpan lokal
+      data.push(...newItems);
+      saveData();
+      render();
+      toast(`${newItems.length} API ditambahkan ke lokal`, "success");
+
+      // Push ke server jika diminta
+      if (doSync) {
+        let ok = 0, fail = 0;
+        toast("Mulai mengirim ke server...", "info");
+        for (const item of newItems) {
+          try {
+            const res = await serverPush(item);
+            const serverId = res.data?.id || res.id || res.serverId;
+            if (serverId) {
+              const idx = data.findIndex(d => d.id === item.id);
+              if (idx !== -1) data[idx].serverId = serverId;
+            }
+            ok++;
+          } catch (err) { fail++; }
+        }
+        saveData();
+        render();
+        if (fail === 0) toast(`${ok} API sukses terkirim ke server`, "success");
+        else toast(`${ok} sukses, ${fail} gagal ke server`, "warning");
+      }
+    } catch (err) {
+      toast("Gagal membaca file: " + err.message, "error");
+    }
+    e.target.value = ""; // Reset input file
+  };
+  reader.readAsText(file);
+};
+
 /* =========================================
-   EXPORT / IMPORT
+   EXPORT / IMPORT TEXT
    ========================================= */
 function exportJSON() {
   if (data.length === 0) return toast("Tidak ada data untuk diexport", "warning");
@@ -1004,8 +1081,10 @@ function toast(msg, type = "info") {
 async function handleSaveServer() {
   const url = $("serverUrl").value.trim();
   if (!url) return toast("URL server tidak boleh kosong", "error");
-  if (!/^https?:\/\//i.test(url)) return toast("URL harus mulai dengan http:// atau https://", "error");
+  
+  // Auto-prefix http:// jika belum ada http atau https
   saveServerUrl(url);
+  
   toast("URL server tersimpan", "success");
   await checkServerHealth();
   if (serverOnline) toast("Server online & siap", "success");
